@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
+
 import '../../Helpers/colors.dart';
 
 class IncomeWidget extends StatelessWidget {
@@ -20,13 +23,20 @@ class IncomeWidget extends StatelessWidget {
               style: TextStyle(color: cLight, fontSize: 16.sp),
             ),
             SizedBox(width: 10.w),
-             Icon(Icons.arrow_circle_up,size: 18.sp,),
+            Icon(
+              Icons.arrow_circle_up,
+              size: 18.sp,
+            ),
           ],
         ),
         SizedBox(height: 5.h),
-        Text(
-          '\$ 1200',
-          style: TextStyle(color: cLight, fontSize: 16.sp),
+        BlocBuilder<TheTransactionsCubit, TheTransactionsState>(
+          builder: (context, state) {
+            return Text(
+              "\$ ${BlocProvider.of<TheTransactionsCubit>(context).income}",
+              style: TextStyle(color: cLight, fontSize: 16.sp),
+            );
+          },
         ),
       ],
     );

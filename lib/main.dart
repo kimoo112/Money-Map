@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
+
 import 'firebase_options.dart';
-import 'view%20model/cubit/google_auth_cubit.dart';
+import 'view%20model/google%20auth%20cubit/google_auth_cubit.dart';
 import 'views/screens/base_screen.dart';
 
 void main() async {
@@ -32,10 +34,17 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, child) {
-          return BlocProvider(
-            create: (context) => GoogleAuthCubit(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => GoogleAuthCubit(),
+              ),
+              BlocProvider(
+                create: (context) => TheTransactionsCubit(),
+              ),
+            ],
             child: MaterialApp(
-              title: 'Flutter Demo',
+              title: 'Money Map',
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
                 fontFamily: 'Inter',

@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../view%20model/google%20auth%20cubit/google_auth_cubit.dart';
+
 import '../../Helpers/colors.dart';
 import '../../Helpers/images.dart';
-import '../../view%20model/cubit/google_auth_cubit.dart';
 
 class TopContainer extends StatelessWidget {
   const TopContainer({
@@ -25,12 +26,12 @@ class TopContainer extends StatelessWidget {
       alignment: Alignment.center,
       child: Stack(
         children: [
-          Positioned(left: -20, 
-          child: Image.asset(Assets.iconsVectors)),
-            Positioned(top:0,
-            right: -140, 
-            bottom: 0,
-          child: Image.asset(Assets.iconsVectors)),
+          Positioned(left: -20, child: Image.asset(Assets.iconsVectors)),
+          Positioned(
+              top: 0,
+              right: -140,
+              bottom: 0,
+              child: Image.asset(Assets.iconsVectors)),
           Padding(
             padding: EdgeInsets.only(top: 40.0.sp, left: 10.sp, right: 10.sp),
             child: Row(
@@ -50,7 +51,9 @@ class TopContainer extends StatelessWidget {
                     ),
                     SizedBox(height: 5.h),
                     Text(
-                      FirebaseAuth.instance.currentUser?.displayName.toString()?? 'No name',
+                      FirebaseAuth.instance.currentUser?.displayName
+                              .toString() ??
+                          'No name',
                       style: TextStyle(
                           fontSize: 20.sp,
                           color: cBlue,
@@ -68,7 +71,7 @@ class TopContainer extends StatelessWidget {
                         BlocProvider.of<GoogleAuthCubit>(context)
                             .signout(context);
                       },
-                      icon:  Icon(
+                      icon: Icon(
                         Icons.logout,
                         color: cBlue,
                         size: 18.sp,

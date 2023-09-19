@@ -2,13 +2,35 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../Helpers/colors.dart';
 import '../../Helpers/images.dart';
-import '../../view%20model/cubit/google_auth_cubit.dart';
+import '../../view model/google auth cubit/google_auth_cubit.dart';
 import '../widgets/custom_button.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  final snackBar = SnackBar(
+    /// need to set following properties for best effect of awesome_snackbar_content
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'On Snap!',
+      message:
+          'This is an example error message that will be shown in the body of snackbar!',
+
+      /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+      contentType: ContentType.failure,
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +45,18 @@ class LoginView extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            BlocBuilder<GoogleAuthCubit, GoogleAuthState>(
+            BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
+              listener: (context, state) {
+                if (state is GoogleAuthFailure) {
+                  showSnackBar(context, state.errorMsg, ContentType.failure);
+                } else if (state is GoogleAuthSuccess) {
+                  showSnackBar(
+                      context, 'Login Successfuly Done', ContentType.success);
+                }
+              },
               builder: (context, state) {
                 if (state is GoogleAuthLoading) {
                   return const CircularProgressIndicator();
-                } else if (state is GoogleAuthFailure) {
-                  return SnackBar(content: Text(state.errorMsg.toString()));
-                  // Text(state.errorMsg.toString());
-                } else if (state is GoogleAuthSuccess) {
                 } else {}
                 return CustomButton(
                     onTap: () {
@@ -38,29 +64,42 @@ class LoginView extends StatelessWidget {
                           .signInWithGoogle(context);
                     },
                     bcColor: cGrey,
-                    title: Image.asset(Assets.iconsGoogleIcon));
+                    title: _customButtonTitle());
               },
-            ),
+            )
           ],
         ),
       ),
     );
   }
+
+  Row _customButtonTitle() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(Assets.iconsGoogleIcon),
+        SizedBox(width: 10.w),
+        const Text(
+          'Login Here',
+          style: TextStyle(
+              fontSize: 22, fontWeight: FontWeight.w600, color: cWhite),
+        ),
+      ],
+    );
+  }
 }
 
-snackBar(errMsg) {
-  SnackBar(
-    /// need to set following properties for best effect of awesome_snackbar_content
+void showSnackBar(BuildContext context, String errMsg, ContentType type) {
+  final snackBar = SnackBar(
     elevation: 0,
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
     content: AwesomeSnackbarContent(
       title: 'On Snap!',
-      message:
-          errMsg,
-
-      /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
-      contentType: ContentType.failure,
+      message: errMsg,
+      contentType: type,
     ),
   );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
