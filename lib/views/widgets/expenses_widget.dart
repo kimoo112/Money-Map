@@ -30,9 +30,13 @@ class ExpensesWidget extends StatelessWidget {
           ],
         ),
         SizedBox(height: 5.h),
-        Text(
-          "\$ ${BlocProvider.of<TheTransactionsCubit>(context).expenses}",
-          style: TextStyle(color: cLight, fontSize: 16.sp),
+        BlocBuilder<TheTransactionsCubit, TheTransactionsState>(
+          builder: (context, state) {
+            return Text(
+              "\$ ${BlocProvider.of<TheTransactionsCubit>(context).expenses}",
+              style: TextStyle(color: cLight, fontSize: 16.sp),
+            );
+          },
         )
       ],
     );

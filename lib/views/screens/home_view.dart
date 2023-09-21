@@ -1,14 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:incomeandexpense/Helpers/images.dart';
 import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../Helpers/colors.dart';
 import '../widgets/bottom_container.dart';
 import '../widgets/top_container.dart';
+import '../widgets/transaction_container.dart';
 import '../widgets/transactions_row_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -27,12 +27,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final List transactionsContents =
-        BlocProvider.of<TheTransactionsCubit>(context)
-            .transactionsContents
-            .reversed
-            .toList();
-
     return Scaffold(
       body: Center(
         child: Column(
@@ -51,37 +45,18 @@ class _HomeViewState extends State<HomeView> {
             BlocBuilder<TheTransactionsCubit, TheTransactionsState>(
               builder: (context, state) {
                 if (state is TheTransactionsEmpty) {
-                  return Center(
-                    child: Image.asset(
-                      Assets.imagesGetStarted,
-                      width: 250.w,
-                    ),
-                  );
+                  return emptyList();
                 } else if (state is TheTransactionsLoaded) {
                   return Expanded(
                       child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: transactionsContents.length,
+                    itemCount: state.transactions.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () {
-                          BlocProvider.of<TheTransactionsCubit>(context)
-                              .removeTransaction(transactionsContents[index]);
-                        },
-                        child: ListTile(
-                          title: Text('${transactionsContents[index].title}'),
-                          subtitle: Text('${transactionsContents[index].date}'),
-                          leading: CircleAvatar(
-                            backgroundColor: cBlue,
-                            backgroundImage: FileImage(
-                                File(transactionsContents[index].image)),
-                          ),
-                          trailing: Text(
-                              '\$ ${transactionsContents[index].price}',
-                              style:
-                                  const TextStyle(fontSize: 15, color: cGreen)),
-                        ),
-                      );
+                      final transactionsContents =
+                          state.transactions.reversed.toList();
+                      return TranasactionContainer(
+                          transactionsContents: transactionsContents,
+                          index: index);
                     },
                   ));
                 }
@@ -91,6 +66,27 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       ),
+    );
+  }
+
+  Column emptyList() {
+    return Column(
+      children: [
+        Lottie.asset(Assets.images404Lottie,
+            width: 250.w,
+            animate: true,
+            options: LottieOptions(enableMergePaths: true)),
+        SizedBox(
+          height: 10.h,
+        ),
+        Text(
+          'Your financial story begins now! Add your first transaction Now 📖💰'
+              .toUpperCase(),
+          style: TextStyle(
+              color: cBlue, fontWeight: FontWeight.w600, fontSize: 14.sp),
+          textAlign: TextAlign.center,
+        )
+      ],
     );
   }
 }

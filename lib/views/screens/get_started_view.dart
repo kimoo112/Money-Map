@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+
 import '../../Helpers/colors.dart';
 import '../../Helpers/images.dart';
 import '../../Helpers/size.dart';
@@ -22,12 +23,13 @@ class GetStartedView extends StatelessWidget {
               ),
               const Text(
                 "Spend Smarter Save More",
-                style: TextStyle(fontSize: 22,fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
               ),
               const Spacer(),
               const CustomButton(
                 bcColor: cBlue,
               ),
+              // AxisChartData(maxX: BlocProvider.of<T>(context))
             ],
           ),
           _getStartedImage(),
@@ -43,7 +45,7 @@ class GetStartedView extends StatelessWidget {
         right: 0,
         left: 0,
         child: Image.asset(
-        Assets.imagesGetStarted,
+          Assets.imagesGetStarted,
           width: 150,
         ));
   }

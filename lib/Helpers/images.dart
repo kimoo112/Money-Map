@@ -9,7 +9,19 @@ class Assets {
   /// assets/icons/vectors.png
   static const String iconsVectors = "assets/icons/vectors.png";
 
+  /// Assets for images404Lottie
+  /// assets/images/404Lottie.json
+  static const String images404Lottie = "assets/images/404Lottie.json";
+
   /// Assets for imagesGetStarted
   /// assets/images/GetStarted.png
   static const String imagesGetStarted = "assets/images/GetStarted.png";
+
+  /// Assets for imagesTransactionEmpty
+  /// assets/images/TransactionEmpty.json
+  static const String imagesTransactionEmpty = "assets/images/TransactionEmpty.json";
+
+  /// Assets for imagesTransactionHistory
+  /// assets/images/TransactionHistory.json
+  static const String imagesTransactionHistory = "assets/images/TransactionHistory.json";
 }

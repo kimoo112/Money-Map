@@ -12,4 +12,16 @@ final class TheTransactionsLoaded extends TheTransactionsState {
 
   TheTransactionsLoaded({required this.transactions});
 }
+
 final class TheTransactionsRemoved extends TheTransactionsState {}
+
+final class TheImagePicked extends TheTransactionsState {
+  final String imagePath;
+
+  TheImagePicked({required this.imagePath});
+}
+
+final class TheImageEmpty extends TheTransactionsState {}
+final class IsIncomeState extends TheTransactionsState {}
+final class IsIncomeStateUpdated extends TheTransactionsState {}
+final class IsExpenseState extends TheTransactionsState {}

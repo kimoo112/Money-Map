@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../Helpers/colors.dart';
 import '../../Helpers/images.dart';
 import '../../view model/google auth cubit/google_auth_cubit.dart';
-import '../widgets/custom_button.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -58,13 +56,14 @@ class _LoginViewState extends State<LoginView> {
                 if (state is GoogleAuthLoading) {
                   return const CircularProgressIndicator();
                 } else {}
-                return CustomButton(
+                return InkWell(
                     onTap: () {
                       BlocProvider.of<GoogleAuthCubit>(context)
                           .signInWithGoogle(context);
                     },
-                    bcColor: cGrey,
-                    title: _customButtonTitle());
+                    child: Image.asset(
+                      Assets.iconsGoogleIcon,
+                    ));
               },
             )
           ],
@@ -73,33 +72,18 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Row _customButtonTitle() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(Assets.iconsGoogleIcon),
-        SizedBox(width: 10.w),
-        const Text(
-          'Login Here',
-          style: TextStyle(
-              fontSize: 22, fontWeight: FontWeight.w600, color: cWhite),
-        ),
-      ],
+  void showSnackBar(BuildContext context, String errMsg, ContentType type) {
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'On Snap!',
+        message: errMsg,
+        contentType: type,
+      ),
     );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
-}
-
-void showSnackBar(BuildContext context, String errMsg, ContentType type) {
-  final snackBar = SnackBar(
-    elevation: 0,
-    behavior: SnackBarBehavior.floating,
-    backgroundColor: Colors.transparent,
-    content: AwesomeSnackbarContent(
-      title: 'On Snap!',
-      message: errMsg,
-      contentType: type,
-    ),
-  );
-
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

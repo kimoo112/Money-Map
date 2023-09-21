@@ -5,10 +5,12 @@ class TransactionsModel {
   final String date;
   final int price;
   final dynamic image;
+  final bool isIncome;
   TransactionsModel({
     required this.title,
     required this.date,
     required this.price,
     required this.image,
+    required this.isIncome,
   });
 }
