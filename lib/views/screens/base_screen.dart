@@ -7,20 +7,21 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:incomeandexpense/Helpers/navigate.dart';
 import 'package:incomeandexpense/views/screens/add_transactions.dart';
+import 'package:incomeandexpense/views/screens/chart_view.dart';
 import 'package:incomeandexpense/views/screens/profile_view.dart';
 
 import '../../Helpers/colors.dart';
 import 'home_view.dart';
 
 class BaseScreen extends StatefulWidget {
-  const BaseScreen({Key? key}) : super(key: key);
-
+  const BaseScreen({Key? key, this.bottomNavIndex = 0}) : super(key: key);
+  final int bottomNavIndex;
   @override
   State<BaseScreen> createState() => _BaseScreenState();
 }
 
 class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
-  var _bottomNavIndex = 0; //default index of a first screen
+  late int _bottomNavIndex;
 
   late AnimationController _fabAnimationController;
   late AnimationController _borderRadiusAnimationController;
@@ -38,13 +39,14 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
   ];
   List<Widget> pages = [
     const HomeView(),
-    const HomeView(),
+    const ChartView(),
     const HomeView(),
     const ProfileView(),
   ];
   @override
   void initState() {
     super.initState();
+    _bottomNavIndex = widget.bottomNavIndex; //default index of a first screen
 
     _fabAnimationController = AnimationController(
       duration: const Duration(milliseconds: 500),

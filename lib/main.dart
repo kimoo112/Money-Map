@@ -4,11 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
-import 'package:incomeandexpense/views/screens/get_started_view.dart';
+import 'package:incomeandexpense/views/screens/base_screen.dart';
 
 import 'firebase_options.dart';
 import 'view%20model/google%20auth%20cubit/google_auth_cubit.dart';
-import 'views/screens/base_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +50,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Inter',
                 useMaterial3: true,
               ),
-              home: const GetStartedView(),
+              home: const BaseScreen(),
             ),
           );
         });

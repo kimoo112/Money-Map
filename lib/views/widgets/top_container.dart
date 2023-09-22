@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../view%20model/google%20auth%20cubit/google_auth_cubit.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../Helpers/colors.dart';
 import '../../Helpers/images.dart';
@@ -61,23 +61,15 @@ class TopContainer extends StatelessWidget {
                     )
                   ],
                 ),
-                BlocBuilder<GoogleAuthCubit, GoogleAuthState>(
-                  builder: (context, state) {
-                    if (state is GoogleAuthLoading) {
-                      return const CircularProgressIndicator();
-                    } else {}
-                    return IconButton(
-                      onPressed: () {
-                        BlocProvider.of<GoogleAuthCubit>(context)
-                            .signout(context);
-                      },
-                      icon: Icon(
-                        Icons.logout,
-                        color: cBlue,
-                        size: 18.sp,
-                      ),
-                    );
+                IconButton(
+                  onPressed: () {
+                    _launchUrl('https://my-moneyy.vercel.app/');
                   },
+                  icon: Icon(
+                    Iconsax.global,
+                    color: cBlue,
+                    size: 18.sp,
+                  ),
                 ),
               ],
             ),
@@ -87,3 +79,10 @@ class TopContainer extends StatelessWidget {
     );
   }
 }
+ Future<void> _launchUrl(String url) async {
+    if (await canLaunchUrlString(url)) {
+      launchUrlString(url);
+    } else {
+      throw Exception('Could not launch $url');
+    }
+  }

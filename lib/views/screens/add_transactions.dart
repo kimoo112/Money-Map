@@ -176,10 +176,24 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        CircleAvatar(
-            backgroundColor: cBlue,
-            radius: 50,
-            backgroundImage: image != '' ? FileImage(File(image)) : null),
+        Container(
+          decoration: BoxDecoration(
+borderRadius: BorderRadius.circular(               49,
+),
+          boxShadow: [
+        BoxShadow(
+          offset: const Offset(0, 2),
+          color: cLightGrey.withOpacity(.4),
+          blurRadius: 7,
+          spreadRadius: 1,
+        ),
+      ]
+          ),
+          child: CircleAvatar(
+              backgroundColor: cBlue,
+              radius: 50,
+              backgroundImage: image != '' ? FileImage(File(image)) : null),
+        ),
         FloatingActionButton(
           backgroundColor: cWhite,
           shape: const CircleBorder(),
@@ -201,10 +215,24 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        CircleAvatar(
-            backgroundColor: cBlue,
-            radius: 50,
-            backgroundImage: FileImage(File(state.imagePath))),
+        Container(
+          decoration: BoxDecoration(
+borderRadius: BorderRadius.circular(               49,
+),
+          boxShadow: [
+        BoxShadow(
+          offset: const Offset(0, 2),
+          color: cLightGrey.withOpacity(.4),
+          blurRadius: 7,
+          spreadRadius: 1,
+        ),
+      ]
+          ),
+          child: CircleAvatar(
+              backgroundColor: cBlue,
+              radius: 50,
+              backgroundImage: FileImage(File(state.imagePath))),
+        ),
         FloatingActionButton(
           backgroundColor: cWhite,
           shape: const CircleBorder(),

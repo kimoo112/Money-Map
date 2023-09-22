@@ -5,7 +5,7 @@ class TransactionsModel {
   final String date;
   final int price;
   final dynamic image;
-  final bool isIncome;
+  late final bool isIncome;
   TransactionsModel({
     required this.title,
     required this.date,

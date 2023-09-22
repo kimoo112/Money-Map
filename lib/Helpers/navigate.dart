@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 void navigateToPR(Widget, context) => Navigator.pushReplacement(
       context,
       PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 1200),
+        transitionDuration: const Duration(milliseconds: 800),
         pageBuilder: (context, animation, _) {
           return FadeTransition(
             opacity: animation,
@@ -18,7 +18,7 @@ void navigateToPR(Widget, context) => Navigator.pushReplacement(
 void navigateToP(Widget, context) => Navigator.push(
       context,
       PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 800),
+        transitionDuration: const Duration(milliseconds: 600),
         pageBuilder: (context, animation, _) {
           return FadeTransition(
             opacity: animation,

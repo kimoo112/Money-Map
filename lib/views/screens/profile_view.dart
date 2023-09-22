@@ -7,6 +7,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:incomeandexpense/Helpers/colors.dart';
 import 'package:incomeandexpense/view%20model/google%20auth%20cubit/google_auth_cubit.dart';
 
+import '../widgets/all_profile_list_tiles.dart';
+
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
 
@@ -16,14 +18,14 @@ class ProfileView extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: 310.h,
+            height: 240.h,
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
                 ClipPath(
                   clipper: OvalBottomBorderClipper(),
                   child: Container(
-                    height: 278.h,
+                    height: 210.h,
                     color: cBlue.withOpacity(.9),
                   ),
                 ),
@@ -33,6 +35,10 @@ class ProfileView extends StatelessWidget {
             ),
           ),
           _nameAndEmail(),
+          SizedBox(
+            height: 20.h,
+          ),
+          const AllProfileListTiles(),
         ],
       ),
     );
@@ -53,14 +59,25 @@ class ProfileView extends StatelessWidget {
   Positioned _profilePicture() {
     return Positioned(
       bottom: 0,
-      child: CircleAvatar(
-        minRadius: 60,
-        backgroundColor: cWhite,
+      child: Container(
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.circular(60), boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 2),
+            color: cLightGrey.withOpacity(.4),
+            blurRadius: 7,
+            spreadRadius: .7,
+          ),
+        ]),
         child: CircleAvatar(
-          backgroundColor: cBlue,
-          backgroundImage:
-              NetworkImage('${FirebaseAuth.instance.currentUser?.photoURL}'),
-          minRadius: 55,
+          minRadius: 60,
+          backgroundColor: cWhite,
+          child: CircleAvatar(
+            backgroundColor: cBlue,
+            backgroundImage:
+                NetworkImage('${FirebaseAuth.instance.currentUser?.photoURL}'),
+            minRadius: 55,
+          ),
         ),
       ),
     );

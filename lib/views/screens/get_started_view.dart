@@ -29,7 +29,6 @@ class GetStartedView extends StatelessWidget {
               const CustomButton(
                 bcColor: cBlue,
               ),
-              // AxisChartData(maxX: BlocProvider.of<T>(context))
             ],
           ),
           _getStartedImage(),
