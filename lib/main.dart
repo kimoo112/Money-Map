@@ -3,14 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
-import 'package:incomeandexpense/views/screens/base_screen.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:incomeandexpense/views/screens/get_started_view.dart';
 
+import 'Helpers/strings.dart';
 import 'firebase_options.dart';
-import 'view%20model/google%20auth%20cubit/google_auth_cubit.dart';
+import 'models/transactions_model.dart';
+import 'view model/google auth cubit/google_auth_cubit.dart';
+import 'view model/transaction cubit/the_transaction_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(TransactionsModelAdapter());
+  await Hive.openBox<TransactionsModel>(hiveBox);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -21,11 +27,11 @@ void main() async {
       statusBarIconBrightness: Brightness.light,
     ),
   );
-  runApp(const MyApp());
+  runApp(const MoneyMap());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MoneyMap extends StatelessWidget {
+  const MoneyMap({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +56,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Inter',
                 useMaterial3: true,
               ),
-              home: const BaseScreen(),
+              home: const GetStartedView(),
             ),
           );
         });

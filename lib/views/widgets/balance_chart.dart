@@ -1,8 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:incomeandexpense/Helpers/colors.dart';
-import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
+import '../../Helpers/colors.dart';
+
+import '../../view model/transaction cubit/the_transaction_cubit.dart';
 
 class BalanceChart extends StatefulWidget {
   const BalanceChart({super.key});
@@ -39,6 +40,7 @@ class _BalanceChartState extends State<BalanceChart> {
               barTouchData: BarTouchData(
                 touchTooltipData: BarTouchTooltipData(
                   tooltipBgColor: cBlue,
+                  tooltipRoundedRadius: 15,
                   getTooltipItem: (group, groupIndex, rod, rodIndex) {
                     String title;
                     switch (group.x.toInt()) {
@@ -55,7 +57,7 @@ class _BalanceChartState extends State<BalanceChart> {
                         throw Exception('Unknown x value');
                     }
                     return BarTooltipItem(
-                      '$title\n${rod.toY - 1}',
+                      '$title\n${rod.toY}',
                       const TextStyle(color: Colors.white),
                     );
                   },
@@ -99,9 +101,8 @@ class _BalanceChartState extends State<BalanceChart> {
                   x: 1,
                   barRods: [
                     BarChartRodData(
-                      toY: expense ,
-                                            color: cRed,
-
+                      toY: expense,
+                      color: cRed,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(6),
                         topRight: Radius.circular(6),
@@ -127,8 +128,6 @@ class _BalanceChartState extends State<BalanceChart> {
           ),
         ),
       ),
-      
     );
-    
   }
 }

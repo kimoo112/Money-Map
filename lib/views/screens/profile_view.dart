@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:incomeandexpense/Helpers/colors.dart';
-import 'package:incomeandexpense/view%20model/google%20auth%20cubit/google_auth_cubit.dart';
+import '../../Helpers/colors.dart';
+import '../../view%20model/google%20auth%20cubit/google_auth_cubit.dart';
 
 import '../widgets/all_profile_list_tiles.dart';
 
@@ -15,31 +15,33 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: 240.h,
-            child: Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                ClipPath(
-                  clipper: OvalBottomBorderClipper(),
-                  child: Container(
-                    height: 210.h,
-                    color: cBlue.withOpacity(.9),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 240.h,
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  ClipPath(
+                    clipper: OvalBottomBorderClipper(),
+                    child: Container(
+                      height: 210.h,
+                      color: cBlue.withOpacity(.9),
+                    ),
                   ),
-                ),
-                _profilePicture(),
-                _logoutButton(context),
-              ],
+                  _profilePicture(),
+                  _logoutButton(context),
+                ],
+              ),
             ),
-          ),
-          _nameAndEmail(),
-          SizedBox(
-            height: 20.h,
-          ),
-          const AllProfileListTiles(),
-        ],
+            _nameAndEmail(),
+            SizedBox(
+              height: 20.h,
+            ),
+            const AllProfileListTiles(),
+          ],
+        ),
       ),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
 
 import '../../Helpers/colors.dart';
+import '../../view model/transaction cubit/the_transaction_cubit.dart';
 
 class IncomeWidget extends StatelessWidget {
   const IncomeWidget({

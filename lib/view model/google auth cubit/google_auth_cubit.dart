@@ -1,9 +1,10 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:incomeandexpense/Helpers/navigate.dart';
+import 'package:incomeandexpense/view%20model/transaction%20cubit/the_transaction_cubit.dart';
 import 'package:incomeandexpense/views/screens/base_screen.dart';
 import 'package:incomeandexpense/views/screens/login_view.dart';
 import 'package:meta/meta.dart';
@@ -44,6 +45,7 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
 
     GoogleSignIn().disconnect();
     user.signOut();
+    BlocProvider.of<TheTransactionsCubit>(context).removeBox();
     emit(GoogleAuthSuccess());
 
     navigateToPR(const LoginView(), context);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../Helpers/colors.dart';
 import '../../Helpers/images.dart';
@@ -21,10 +22,21 @@ class GetStartedView extends StatelessWidget {
               const SizedBox(
                 height: 22,
               ),
-              const Text(
-                "Spend Smarter Save More",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+               Column(
+                 children: [
+                   Text(
+                    "Money Map",
+                    style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w700,color: cBlue),textAlign: TextAlign.center,
               ),
+              SizedBox(
+                height: 10.h,
+              ),
+                 Text(
+                    " Illuminate your financial path, charting incomes and spends seamlessly",
+                    style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),textAlign: TextAlign.center,
+              ),
+                 ],
+               ),
               const Spacer(),
               const CustomButton(
                 bcColor: cBlue,
@@ -45,16 +57,17 @@ class GetStartedView extends StatelessWidget {
         left: 0,
         child: Image.asset(
           Assets.imagesGetStarted,
-          width: 150,
+          width: 150.w,
         ));
   }
 
   ClipPath _customContainer(BuildContext context) {
     return ClipPath(
-      clipper: OvalBottomBorderClipper(),
+      clipper: WaveClipperTwo(),
       child: Container(
-        height: kHieght(context) * .7,
-        color: cBlue.withOpacity(.8),
+          color: cBlue.withOpacity(.8),
+        height: kHieght(context) * .75,
+
       ),
     );
   }

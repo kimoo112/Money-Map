@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:incomeandexpense/models/transactions_model.dart';
-import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
+import '../../models/transactions_model.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../Helpers/colors.dart';
+import '../../view model/transaction cubit/the_transaction_cubit.dart';
 
 class TranasactionContainer extends StatelessWidget {
   const TranasactionContainer({
@@ -19,24 +20,37 @@ class TranasactionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: UniqueKey(),
-      onDismissed: (direction) {
-        BlocProvider.of<TheTransactionsCubit>(context)
-            .removeTransaction(transactionsContents[index]);
-      },
-      child: ListTile(
-        title: Text(transactionsContents[index].title),
-        subtitle: Text(transactionsContents[index].date),
-        leading: CircleAvatar(
-            backgroundColor: cBlue,
-            backgroundImage: transactionsContents[index].image != null
-                ? FileImage(File(transactionsContents[index].image))
-                : null),
-        trailing: Text('\$ ${transactionsContents[index].price}',
-            style: TextStyle(
-                fontSize: 15,
-                color: transactionsContents[index].isIncome ? cGreen : cRed)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Dismissible(
+        background: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              color: cRed, borderRadius: BorderRadius.circular(11)),
+          alignment: Alignment.centerLeft,
+          child: const Icon(
+            Ionicons.trash,
+            color: cWhite,
+          ),
+        ),
+        key: UniqueKey(),
+        onDismissed: (direction) {
+          BlocProvider.of<TheTransactionsCubit>(context)
+              .removeTransaction(transactionsContents[index]);
+        },
+        child: ListTile(
+          title: Text(transactionsContents[index].title),
+          subtitle: Text(transactionsContents[index].date),
+          leading: CircleAvatar(
+              backgroundColor: cBlue,
+              backgroundImage: transactionsContents[index].image != null
+                  ? FileImage(File(transactionsContents[index].image))
+                  : null),
+          trailing: Text('\$ ${transactionsContents[index].price}',
+              style: TextStyle(
+                  fontSize: 15,
+                  color: transactionsContents[index].isIncome ? cGreen : cRed)),
+        ),
       ),
     );
   }

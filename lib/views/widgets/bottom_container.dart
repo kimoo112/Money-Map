@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../Helpers/colors.dart';
 import '../../Helpers/size.dart';
-import '../../view model/cubit/the_money_cubit.dart';
+import '../../view model/transaction cubit/the_transaction_cubit.dart';
 import 'expenses_widget.dart';
 import 'income_widget.dart';
 import 'total_balance_widget.dart';

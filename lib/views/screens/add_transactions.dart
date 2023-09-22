@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:incomeandexpense/Helpers/colors.dart';
-import 'package:incomeandexpense/Helpers/navigate.dart';
-import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
-import 'package:incomeandexpense/views/screens/base_screen.dart';
-import 'package:incomeandexpense/views/widgets/custom_button.dart';
-import 'package:incomeandexpense/views/widgets/custom_text_field.dart';
+import '../../Helpers/colors.dart';
+import '../../Helpers/navigate.dart';
+import 'base_screen.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
 import 'package:intl/intl.dart';
+
+import '../../view model/transaction cubit/the_transaction_cubit.dart';
 
 class AddTransactionsView extends StatefulWidget {
   const AddTransactionsView({Key? key}) : super(key: key);
@@ -73,15 +74,10 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
                       height: 10.h,
                     ),
                     incomeRadio(context),
-                      SizedBox(
+                    SizedBox(
                       height: 15.h,
                     ),
-                    BlocBuilder<TheTransactionsCubit,
-                        TheTransactionsState>(
-                      builder: (context, state) {
-                        return _addTransactionButton(context, formattedDate);
-                      },
-                    ),
+                    _addTransactionButton(context, formattedDate),
                   ],
                 ),
               ),
@@ -106,33 +102,31 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
     );
   }
 
-  CustomButton _addTransactionButton(BuildContext context, String formattedDate) {
+  CustomButton _addTransactionButton(
+      BuildContext context, String formattedDate) {
     return CustomButton(
-                        bcColor: cBlue,
-                        padding: EdgeInsets.zero,
-                        height: 30.h,
-                        title: Text(
-                          'Add transaction'.toUpperCase(),
-                          style: TextStyle(
-                              color: cWhite,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13.sp,
-                              letterSpacing: .8),
-                        ),
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            BlocProvider.of<TheTransactionsCubit>(context)
-                                .addTransaction(
-                                    _descriptionController.text,
-                                    formattedDate.toString(),
-                                    BlocProvider.of<TheTransactionsCubit>(
-                                            context)
-                                        .imagePath,
-                                    int.parse(_amountController.text));
-                            navigateToPR(const BaseScreen(), context);
-                          } else {}
-                        },
-                      );
+      bcColor: cBlue,
+      padding: EdgeInsets.zero,
+      height: 30.h,
+      title: Text(
+        'Add transaction'.toUpperCase(),
+        style: TextStyle(
+            color: cWhite,
+            fontWeight: FontWeight.w600,
+            fontSize: 13.sp,
+            letterSpacing: .8),
+      ),
+      onTap: () {
+        if (_formKey.currentState!.validate()) {
+          BlocProvider.of<TheTransactionsCubit>(context).addTransaction(
+              _descriptionController.text,
+              formattedDate.toString(),
+              BlocProvider.of<TheTransactionsCubit>(context).imagePath,
+              int.parse(_amountController.text));
+          navigateToPR(const BaseScreen(), context);
+        } else {}
+      },
+    );
   }
 
   Column incomeRadio(BuildContext context) {
@@ -178,17 +172,17 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
       children: [
         Container(
           decoration: BoxDecoration(
-borderRadius: BorderRadius.circular(               49,
-),
-          boxShadow: [
-        BoxShadow(
-          offset: const Offset(0, 2),
-          color: cLightGrey.withOpacity(.4),
-          blurRadius: 7,
-          spreadRadius: 1,
-        ),
-      ]
-          ),
+              borderRadius: BorderRadius.circular(
+                49,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(0, 2),
+                  color: cLightGrey.withOpacity(.4),
+                  blurRadius: 7,
+                  spreadRadius: 1,
+                ),
+              ]),
           child: CircleAvatar(
               backgroundColor: cBlue,
               radius: 50,
@@ -217,17 +211,17 @@ borderRadius: BorderRadius.circular(               49,
       children: [
         Container(
           decoration: BoxDecoration(
-borderRadius: BorderRadius.circular(               49,
-),
-          boxShadow: [
-        BoxShadow(
-          offset: const Offset(0, 2),
-          color: cLightGrey.withOpacity(.4),
-          blurRadius: 7,
-          spreadRadius: 1,
-        ),
-      ]
-          ),
+              borderRadius: BorderRadius.circular(
+                49,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(0, 2),
+                  color: cLightGrey.withOpacity(.4),
+                  blurRadius: 7,
+                  spreadRadius: 1,
+                ),
+              ]),
           child: CircleAvatar(
               backgroundColor: cBlue,
               radius: 50,

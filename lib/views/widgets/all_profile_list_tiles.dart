@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:incomeandexpense/view%20model/google%20auth%20cubit/google_auth_cubit.dart';
-import 'package:incomeandexpense/views/screens/base_screen.dart';
+import '../../view%20model/google%20auth%20cubit/google_auth_cubit.dart';
+import '../screens/base_screen.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -83,6 +83,9 @@ class AllProfileListTiles extends StatelessWidget {
             BlocProvider.of<GoogleAuthCubit>(context).signout(context);
           },
         ),
+        SizedBox(
+          height: 55.h,
+        )
       ],
     );
   }

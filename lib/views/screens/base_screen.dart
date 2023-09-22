@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:incomeandexpense/Helpers/navigate.dart';
-import 'package:incomeandexpense/views/screens/add_transactions.dart';
-import 'package:incomeandexpense/views/screens/chart_view.dart';
-import 'package:incomeandexpense/views/screens/profile_view.dart';
+import '../../Helpers/navigate.dart';
+import 'add_transactions.dart';
+import 'chart_view.dart';
+import 'profile_view.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../Helpers/colors.dart';
 import 'home_view.dart';
@@ -34,7 +34,7 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
   final iconList = <IconData>[
     IconlyBold.home,
     IconlyBold.chart,
-    FontAwesomeIcons.wallet,
+    Ionicons.wallet,
     IconlyBold.profile,
   ];
   List<Widget> pages = [

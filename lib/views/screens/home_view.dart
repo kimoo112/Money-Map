@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:incomeandexpense/Helpers/images.dart';
-import 'package:incomeandexpense/view%20model/cubit/the_money_cubit.dart';
+import '../../Helpers/images.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../Helpers/colors.dart';
+import '../../view model/transaction cubit/the_transaction_cubit.dart';
 import '../widgets/bottom_container.dart';
 import '../widgets/top_container.dart';
 import '../widgets/transaction_container.dart';
@@ -60,7 +60,7 @@ class _HomeViewState extends State<HomeView> {
                     },
                   ));
                 }
-                return const SizedBox.shrink();
+                return  emptyList();
               },
             )
           ],

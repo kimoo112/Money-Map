@@ -10,27 +10,40 @@ environment:
   sdk: '>=3.1.2 <4.0.0'
 
 dependencies:
+# for bottom naviation bar
   animated_bottom_navigation_bar: ^1.2.1
+# for splash screen
   another_flutter_splash_screen: ^1.1.5
   awesome_snackbar_content: ^0.1.3
+  build_runner: ^2.4.6
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.9.0
   firebase_core: ^2.15.1
+# for charts to incomes and expenses
   fl_chart: ^0.63.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
+# for container clip paths
   flutter_custom_clippers: ^2.1.0
+# for nice icons
   flutter_iconly: ^1.0.2
+# for responsive app
   flutter_screenutil: ^5.9.0
-  flutter_snake_navigationbar: ^0.6.1
-  font_awesome_flutter: ^10.5.0
   google_sign_in: ^6.1.5
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  hive_generator: ^2.0.1
+# for nice icons also
   iconsax: ^0.0.8
   image_picker: ^1.0.4
+# for date formatter 
   intl: ^0.18.1
+# for nice icons also
   ionicons: ^0.2.2
+# for lottie files
   lottie: ^2.6.0
+# for url lancher how ever the website and my whats and github ....
   url_launcher: ^6.1.14
 
 dev_dependencies:
@@ -45,25 +58,10 @@ flutter_assets:
   field_prefix: null
 
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
     - assets/icons/
-  #   - images/a_dot_ham.jpeg
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
 fonts:
   - family: Inter
     fonts:
@@ -85,13 +83,3 @@ fonts:
         weight: 800
       - asset: fonts/Inter/Inter-Black.ttf
         weight: 900
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

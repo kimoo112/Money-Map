@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:incomeandexpense/Helpers/colors.dart';
-import 'package:incomeandexpense/views/widgets/balance_chart.dart';
+import '../../Helpers/colors.dart';
+import '../widgets/balance_chart.dart';
 
 class ChartView extends StatelessWidget {
   const ChartView({Key? key}) : super(key: key);

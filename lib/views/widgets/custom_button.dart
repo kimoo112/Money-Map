@@ -43,7 +43,7 @@ class CustomButton extends StatelessWidget {
           spreadRadius: .5,
         ),
       ],
-              borderRadius: BorderRadius.circular(12.r),
+              borderRadius: BorderRadius.circular(10.r),
               color: bcColor ?? Colors.amber,
             ),
             alignment: Alignment.center,

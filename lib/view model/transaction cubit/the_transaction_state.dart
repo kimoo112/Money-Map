@@ -1,4 +1,4 @@
-part of 'the_money_cubit.dart';
+part of 'the_transaction_cubit.dart';
 
 @immutable
 sealed class TheTransactionsState {}
@@ -14,6 +14,7 @@ final class TheTransactionsLoaded extends TheTransactionsState {
 }
 
 final class TheTransactionsRemoved extends TheTransactionsState {}
+final class TheAllTransactionsRemoved extends TheTransactionsState {}
 
 final class TheImagePicked extends TheTransactionsState {
   final String imagePath;

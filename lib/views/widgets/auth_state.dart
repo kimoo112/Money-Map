@@ -1,8 +1,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:incomeandexpense/views/screens/base_screen.dart';
-import 'package:incomeandexpense/views/screens/login_view.dart';
+import '../screens/base_screen.dart';
+import '../screens/login_view.dart';
 
 class AuthStateChanges extends StatelessWidget {
   const AuthStateChanges({

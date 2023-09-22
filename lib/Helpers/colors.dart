@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color cLight = Color.fromARGB(255, 225, 225, 233);
+const Color cLight = Color.fromARGB(255, 239, 239, 245);
 const Color cGreen = Color(0xFF19B404);
 const Color cDark = Color(0xFF2B2B2B);
 const Color cWhite = Color(0xFFFFFFFF);
