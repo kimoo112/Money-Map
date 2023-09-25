@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../Helpers/colors.dart';
-
 class TransactionsRowWIdget extends StatelessWidget {
   const TransactionsRowWIdget({
     super.key,
@@ -17,14 +15,16 @@ class TransactionsRowWIdget extends StatelessWidget {
         children: [
           Text(
             'Transactions History',
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16.sp),
+            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16.sp,),
           ),
           TextButton(
             onPressed: () {},
             child: Text(
               "See All",
               style: TextStyle(
-                  fontWeight: FontWeight.w700, fontSize: 12.sp, color: cBlue),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 12.sp,
+                  color: Theme.of(context).primaryColor),
             ),
           ),
         ],

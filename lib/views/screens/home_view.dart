@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../Helpers/images.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../Helpers/colors.dart';
+import '../../Helpers/images.dart';
 import '../../view model/transaction cubit/the_transaction_cubit.dart';
 import '../widgets/bottom_container.dart';
 import '../widgets/top_container.dart';
@@ -60,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
                     },
                   ));
                 }
-                return  emptyList();
+                return emptyList();
               },
             )
           ],
@@ -83,7 +82,9 @@ class _HomeViewState extends State<HomeView> {
           'Your financial story begins now! Add your first transaction Now 📖💰'
               .toUpperCase(),
           style: TextStyle(
-              color: cBlue, fontWeight: FontWeight.w600, fontSize: 14.sp),
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 14.sp),
           textAlign: TextAlign.center,
         )
       ],

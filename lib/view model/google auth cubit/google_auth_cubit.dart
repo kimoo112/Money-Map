@@ -46,6 +46,8 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
     GoogleSignIn().disconnect();
     user.signOut();
     BlocProvider.of<TheTransactionsCubit>(context).removeBox();
+    BlocProvider.of<TheTransactionsCubit>(context).deleteImage();
+
     emit(GoogleAuthSuccess());
 
     navigateToPR(const LoginView(), context);

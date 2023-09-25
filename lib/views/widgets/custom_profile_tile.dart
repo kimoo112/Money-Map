@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-
-import '../../Helpers/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomProfileTile extends StatelessWidget {
   const CustomProfileTile({
@@ -9,12 +8,13 @@ class CustomProfileTile extends StatelessWidget {
     this.onTap,
     required this.title,
     this.subtitle,
-    required this.icon,
+    required this.icon, this.trailing,
   });
   final void Function()? onTap;
   final IconData icon;
   final String title;
   final String? subtitle;
+  final Widget? trailing;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,19 +22,22 @@ class CustomProfileTile extends StatelessWidget {
       child: ListTile(
         leading: Icon(
           icon,
-          color: cBlue,
+          color: Theme.of(context).primaryColor,
         ),
         title: Text(
           title.toUpperCase(),
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
-        subtitle: Text(
-          subtitle ?? '',
-          style: const TextStyle(fontWeight: FontWeight.w400),
+        subtitle: Padding(
+          padding:  EdgeInsets.only(top:4.0.sp),
+          child: Text(
+            subtitle ?? '',
+            style: const TextStyle(fontWeight: FontWeight.w400,),
+          ),
         ),
-        trailing: const Icon(
+        trailing:trailing ?? Icon(
           IconlyLight.arrowRight2,
-          color: cBlue,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );

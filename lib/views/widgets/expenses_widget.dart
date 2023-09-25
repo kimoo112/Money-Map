@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ionicons/ionicons.dart';
 
-import '../../Helpers/colors.dart';
 import '../../view model/transaction cubit/the_transaction_cubit.dart';
 
 class ExpensesWidget extends StatelessWidget {
@@ -20,12 +20,15 @@ class ExpensesWidget extends StatelessWidget {
           children: [
             Text(
               'Expenses'.toUpperCase(),
-              style: TextStyle(color: cLight, fontSize: 16.sp),
+              style: TextStyle(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                fontSize: 16.sp),
             ),
             SizedBox(width: 10.w),
             Icon(
-              Icons.arrow_circle_down_rounded,
-              size: 18.sp,
+              Ionicons.trending_down_outline,
+              size: 20.sp,
+              color: Theme.of(context).scaffoldBackgroundColor,
             ),
           ],
         ),
@@ -34,7 +37,9 @@ class ExpensesWidget extends StatelessWidget {
           builder: (context, state) {
             return Text(
               "\$ ${BlocProvider.of<TheTransactionsCubit>(context).expenses}",
-              style: TextStyle(color: cLight, fontSize: 16.sp),
+              style: TextStyle(
+                                    color: Theme.of(context).scaffoldBackgroundColor,
+fontSize: 16.sp),
             );
           },
         )

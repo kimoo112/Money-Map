@@ -37,7 +37,7 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-            color: cWhite, borderRadius: BorderRadius.circular(16.r)),
+            color: Theme.of(context).scaffoldBackgroundColor, borderRadius: BorderRadius.circular(16.r)),
         child: Stack(
           children: [
             Padding(
@@ -219,6 +219,7 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
                   offset: const Offset(0, 2),
                   color: cLightGrey.withOpacity(.4),
                   blurRadius: 7,
+                  
                   spreadRadius: 1,
                 ),
               ]),

@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Helpers/colors.dart';
 
+import '../../Helpers/colors.dart';
 import '../../view model/transaction cubit/the_transaction_cubit.dart';
 
 class BalanceChart extends StatefulWidget {
@@ -25,7 +25,6 @@ class _BalanceChartState extends State<BalanceChart> {
     return AspectRatio(
       aspectRatio: 1.2,
       child: Card(
-        color: cLight,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         elevation: 10,
         child: Padding(
@@ -39,7 +38,7 @@ class _BalanceChartState extends State<BalanceChart> {
                   1.2, // Ensure the bars fit within the chart
               barTouchData: BarTouchData(
                 touchTooltipData: BarTouchTooltipData(
-                  tooltipBgColor: cBlue,
+                  tooltipBgColor: Theme.of(context).primaryColor,
                   tooltipRoundedRadius: 15,
                   getTooltipItem: (group, groupIndex, rod, rodIndex) {
                     String title;
@@ -115,7 +114,7 @@ class _BalanceChartState extends State<BalanceChart> {
                   barRods: [
                     BarChartRodData(
                       toY: totalBalance,
-                      color: cBlue,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(6),
                         topRight: Radius.circular(6),

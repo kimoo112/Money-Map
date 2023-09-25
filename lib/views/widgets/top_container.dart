@@ -56,7 +56,7 @@ class TopContainer extends StatelessWidget {
                           'No name',
                       style: TextStyle(
                           fontSize: 20.sp,
-                          color: cBlue,
+                          color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.bold),
                     )
                   ],
@@ -67,7 +67,7 @@ class TopContainer extends StatelessWidget {
                   },
                   icon: Icon(
                     Iconsax.global,
-                    color: cBlue,
+                    color: Theme.of(context).primaryColor,
                     size: 18.sp,
                   ),
                 ),
@@ -79,10 +79,11 @@ class TopContainer extends StatelessWidget {
     );
   }
 }
- Future<void> _launchUrl(String url) async {
-    if (await canLaunchUrlString(url)) {
-      launchUrlString(url);
-    } else {
-      throw Exception('Could not launch $url');
-    }
+
+Future<void> _launchUrl(String url) async {
+  if (await canLaunchUrlString(url)) {
+    launchUrlString(url);
+  } else {
+    throw Exception('Could not launch $url');
   }
+}

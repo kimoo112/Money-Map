@@ -1,24 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../view%20model/google%20auth%20cubit/google_auth_cubit.dart';
-import '../screens/base_screen.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../Helpers/navigate.dart';
 import '../../Helpers/strings.dart';
+import '../../view model/google auth cubit/google_auth_cubit.dart';
+import '../../view model/theme cubit/theme_cubit.dart';
 import '../screens/add_transactions.dart';
+import '../screens/base_screen.dart';
 import 'custom_profile_tile.dart';
+import 'custom_switch_tile.dart';
+import 'dark_light_switcher.dart';
 
-class AllProfileListTiles extends StatelessWidget {
+class AllProfileListTiles extends StatefulWidget {
   const AllProfileListTiles({
     super.key,
   });
 
   @override
+  State<AllProfileListTiles> createState() => _AllProfileListTilesState();
+}
+
+class _AllProfileListTilesState extends State<AllProfileListTiles> {
+  bool isAllowed = true;
+
+  void saveSwitchValue() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('switch', isAllowed);
+    getSwitchValue();
+  }
+
+  getSwitchValue() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.get('switch') != null) {
+      isAllowed = prefs.getBool('switch')!;
+      setState(() {});
+    } else {
+      debugPrint('Switch value');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getSwitchValue();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var themeCubit = BlocProvider.of<ThemeCubit>(context);
     return Column(
       children: [
         CustomProfileTile(
@@ -59,6 +94,34 @@ class AllProfileListTiles extends StatelessWidget {
                 context);
           },
         ),
+        CustomSwitchTile(
+            isAllowed: isAllowed,
+            leadingIcon: IconlyLight.notification,
+            enabledSubtitle: 'You\'ll receive updates and alerts',
+            title: 'App Notification',
+            onChanged: (p0) {
+              isAllowed = !isAllowed;
+              saveSwitchValue();
+              setState(() {});
+            },
+            desabledSubtitle: 'You won\'t receive updates and alerts'),
+        BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return CustomProfileTile(
+              icon: themeCubit.isDarkTheme?Ionicons.moon_outline:Ionicons.sunny_outline,
+              title: 'Theme Preferences',
+              subtitle: themeCubit.isDarkTheme
+                  ? 'Dark Mode Activated: Gentle for Your eyes '
+                  : 'Light Mode Activated: Clear For Daytime Viewing',
+              trailing: DayNightSwitch(
+                value: themeCubit.isDarkTheme,
+                onChanged: (_) {
+                  themeCubit.changeTheme();
+                },
+              ),
+            );
+          },
+        ),
         CustomProfileTile(
           icon: Iconsax.message,
           title: 'Contact Me',
@@ -70,7 +133,7 @@ class AllProfileListTiles extends StatelessWidget {
         CustomProfileTile(
           icon: Ionicons.logo_github,
           title: 'Discover My GitHub',
-          subtitle: 'Explore Repos , See latest Commits contribute to my Vision',
+          subtitle: 'Explore My Repos , See latest Commits ',
           onTap: () {
             _launchUrl(githubUrl);
           },

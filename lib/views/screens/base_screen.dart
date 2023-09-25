@@ -4,14 +4,13 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:ionicons/ionicons.dart';
+
 import '../../Helpers/navigate.dart';
 import 'add_transactions.dart';
 import 'chart_view.dart';
-import 'profile_view.dart';
-import 'package:ionicons/ionicons.dart';
-
-import '../../Helpers/colors.dart';
 import 'home_view.dart';
+import 'profile_view.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key, this.bottomNavIndex = 0}) : super(key: key);
@@ -113,7 +112,7 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
           navigateToP(const AddTransactionsView(), context);
         },
         shape: const CircleBorder(),
-        backgroundColor: cBlue,
+        backgroundColor: Theme.of(context).primaryColor,
         child: Stack(
           children: [
             Icon(
@@ -129,7 +128,9 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
         itemCount: iconList.length,
         tabBuilder: (int index, bool isActive) {
-          final color = isActive ? cBlue : cDark;
+          final color = isActive
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).colorScheme.onSurface;
           return Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -143,9 +144,9 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
             ],
           );
         },
-        backgroundColor: cWhite,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         activeIndex: _bottomNavIndex,
-        splashColor: cBlue,
+        splashColor: Theme.of(context).primaryColor,
         notchAndCornersAnimation: borderRadiusAnimation,
         splashSpeedInMilliseconds: 300,
         notchSmoothness: NotchSmoothness.smoothEdge,
@@ -158,7 +159,7 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
           offset: const Offset(0, 1),
           blurRadius: 12,
           spreadRadius: 0.5,
-          color: cLightGrey.withOpacity(.4),
+          color: Theme.of(context).colorScheme.onSurface.withOpacity(.2),
         ),
       ),
     );

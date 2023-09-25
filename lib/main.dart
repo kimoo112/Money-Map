@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:incomeandexpense/Helpers/colors.dart';
+import 'package:incomeandexpense/view%20model/theme%20cubit/theme_cubit.dart';
 import 'package:incomeandexpense/views/screens/get_started_view.dart';
 
 import 'Helpers/strings.dart';
@@ -43,20 +45,49 @@ class MoneyMap extends StatelessWidget {
           return MultiBlocProvider(
             providers: [
               BlocProvider(
+                create: (context) => ThemeCubit()..getTheme(),
+              ),
+              BlocProvider(
                 create: (context) => GoogleAuthCubit(),
               ),
               BlocProvider(
                 create: (context) => TheTransactionsCubit(),
               ),
             ],
-            child: MaterialApp(
-              title: 'Money Map',
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                fontFamily: 'Inter',
-                useMaterial3: true,
-              ),
-              home: const GetStartedView(),
+            child: BlocBuilder<ThemeCubit, ThemeState>(
+              builder: (context, state) {
+                ThemeMode themeMode;
+                if (state is DarkTheme) {
+                  themeMode = ThemeMode.dark;
+                } else if (state is LightTheme) {
+                  themeMode = ThemeMode.light;
+                } else {
+                  themeMode = ThemeMode.system;
+                }
+                return MaterialApp(
+                  title: 'Money Map',
+                  debugShowCheckedModeBanner: false,
+                  themeMode: themeMode,
+                  darkTheme: ThemeData.dark(useMaterial3: true,)
+                      .copyWith(primaryColor: cBlue,
+                      textTheme: Theme.of(context).textTheme.apply(
+                    fontFamily: 'Inter',
+                    bodyColor: cLight
+                    
+                    
+                  )  ),
+                  theme: ThemeData.light(
+                    useMaterial3: true,
+                    
+                  ).copyWith(primaryColor: cDarkBlue,
+                  textTheme: Theme.of(context).textTheme.apply(
+                    fontFamily: 'Inter',
+                    bodyColor: cDark
+                  )
+                  ),
+                  home: const GetStartedView(),
+                );
+              },
             ),
           );
         });

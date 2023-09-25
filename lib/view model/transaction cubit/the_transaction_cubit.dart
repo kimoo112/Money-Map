@@ -1,11 +1,13 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:incomeandexpense/Helpers/strings.dart';
 import 'package:incomeandexpense/models/transactions_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'the_transaction_state.dart';
 
@@ -31,9 +33,10 @@ class TheTransactionsCubit extends Cubit<TheTransactionsState> {
       incomeOrExpenseAdd(transaction);
     }
     emit(TheTransactionsLoaded(transactions: transactionsContents));
-      checkList();
+    checkList();
   }
- void computeIncomeAndExpense(TransactionsModel transaction) {
+
+  void computeIncomeAndExpense(TransactionsModel transaction) {
     if (transaction.isIncome) {
       income += transaction.price;
       totalBalance += transaction.price;
@@ -42,6 +45,7 @@ class TheTransactionsCubit extends Cubit<TheTransactionsState> {
       totalBalance -= transaction.price;
     }
   }
+
   void updateIncomeChoice(bool? isIncomeChoice) {
     if (isIncomeChoice != null) {
       isIncome = isIncomeChoice;
@@ -102,13 +106,23 @@ class TheTransactionsCubit extends Cubit<TheTransactionsState> {
         price: price,
         image: image,
         isIncome: isIncome);
+    addTOCollection(title, date, image, price);
     box.add(transaction);
     transactionsContents = box.values.toList(); // Update the list after adding
     image = imagePath;
-    incomeOrExpenseAdd(price);
+    incomeOrExpenseAdd(transaction);
     emit(TheTransactionsLoaded(transactions: transactionsContents));
     checkList();
     imagePath = '';
+  }
+
+  Future addTOCollection(title, date, image, price) async {
+    CollectionReference transactions =
+        FirebaseFirestore.instance.collection('transactions');
+    return transactions
+        .add({'image': image, 'price': price, 'title': title, 'date': date})
+        .then((value) => debugPrint("User Added"))
+        .catchError((error) => debugPrint("Failed to add user: $error"));
   }
 
   removeTransaction(TransactionsModel transaction) async {
@@ -129,7 +143,6 @@ class TheTransactionsCubit extends Cubit<TheTransactionsState> {
     incomeOrExpenseRemove(transaction);
     emit(TheTransactionsRemoved());
     checkList();
-
   }
 
   Future<void> pickImageFromGallery() async {
@@ -139,10 +152,28 @@ class TheTransactionsCubit extends Cubit<TheTransactionsState> {
 
       if (pickedFile != null) {
         imagePath = pickedFile.path;
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('Image', imagePath);
+        loadImage();
         emit(TheImagePicked(imagePath: imagePath));
       } else {}
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  loadImage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('Image') != null) {
+      imagePath = prefs.getString('Image')!;
+      emit(TheImagePicked(imagePath: imagePath));
+    } else {}
+  }
+
+  deleteImage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.remove('Image');
+      imagePath = '';
+      emit(TheImagePicked(imagePath: imagePath));
   }
 }

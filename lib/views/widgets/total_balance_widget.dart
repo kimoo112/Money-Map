@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 
-import '../../Helpers/colors.dart';
 import '../../view model/transaction cubit/the_transaction_cubit.dart';
 
 class TotalBalanceWidget extends StatelessWidget {
@@ -20,20 +20,28 @@ class TotalBalanceWidget extends StatelessWidget {
           children: [
             Text(
               'Total Balance',
-              style: TextStyle(color: cLight, fontSize: 16.sp),
+              style: TextStyle(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  fontSize: 16.sp),
             ),
             SizedBox(height: 10.h),
             BlocBuilder<TheTransactionsCubit, TheTransactionsState>(
               builder: (context, state) {
                 return Text(
                   "\$ ${BlocProvider.of<TheTransactionsCubit>(context).totalBalance}",
-                  style: TextStyle(color: cLight, fontSize: 16.sp),
+                  style: TextStyle(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      fontSize: 16.sp),
                 );
               },
             ),
           ],
         ),
-        const Icon(CupertinoIcons.chart_bar_alt_fill)
+        Icon(
+          Iconsax.activity5,
+          color: Theme.of(context).scaffoldBackgroundColor,
+          size: 20.sp,
+        )
       ],
     );
   }

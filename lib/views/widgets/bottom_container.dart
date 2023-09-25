@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../Helpers/colors.dart';
 import '../../Helpers/size.dart';
 import '../../view model/transaction cubit/the_transaction_cubit.dart';
 import 'expenses_widget.dart';
@@ -28,18 +27,18 @@ class BottomContainer extends StatelessWidget {
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: cGrey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 11,
-                  offset: const Offset(0, 3), // Changes position of shadow
+                  color:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(.3),
+                  spreadRadius: 3,
+                  blurRadius: 8,
+                  offset: const Offset(0, 0),
                 ),
               ],
-              color: cBlue.withOpacity(.88),
+              color: Theme.of(context).primaryColor.withOpacity(.88),
               borderRadius: BorderRadius.circular(22.r)),
           child: Padding(
             padding: EdgeInsets.all(12.0.sp),
-            child:
-                 BlocBuilder<TheTransactionsCubit, TheTransactionsState>(
+            child: BlocBuilder<TheTransactionsCubit, TheTransactionsState>(
               builder: (context, state) {
                 return const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

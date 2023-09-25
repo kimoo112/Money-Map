@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../models/transactions_model.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../Helpers/colors.dart';
+import '../../models/transactions_model.dart';
 import '../../view model/transaction cubit/the_transaction_cubit.dart';
 
 class TranasactionContainer extends StatelessWidget {
@@ -42,7 +42,7 @@ class TranasactionContainer extends StatelessWidget {
           title: Text(transactionsContents[index].title),
           subtitle: Text(transactionsContents[index].date),
           leading: CircleAvatar(
-              backgroundColor: cBlue,
+              backgroundColor: Theme.of(context).primaryColor,
               backgroundImage: transactionsContents[index].image != null
                   ? FileImage(File(transactionsContents[index].image))
                   : null),
