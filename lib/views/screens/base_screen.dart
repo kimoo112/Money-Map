@@ -1,12 +1,14 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../Helpers/navigate.dart';
+import '../../view model/profile image cubit/profile_image_cubit.dart';
 import 'add_transactions.dart';
 import 'chart_view.dart';
 import 'home_view.dart';
@@ -40,7 +42,10 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
     const HomeView(),
     const ChartView(),
     const HomeView(),
-    const ProfileView(),
+     BlocProvider(
+      create: (context) => ProfileImageCubit(),
+      child:const  ProfileView(),
+    ),
   ];
   @override
   void initState() {
@@ -144,7 +149,8 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
             ],
           );
         },
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor:
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         activeIndex: _bottomNavIndex,
         splashColor: Theme.of(context).primaryColor,
         notchAndCornersAnimation: borderRadiusAnimation,

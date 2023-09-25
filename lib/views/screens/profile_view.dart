@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:incomeandexpense/view%20model/profile%20image%20cubit/profile_image_cubit.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../Helpers/colors.dart';
-import '../../view model/transaction cubit/the_transaction_cubit.dart';
 import '../../view%20model/google%20auth%20cubit/google_auth_cubit.dart';
 import '../widgets/all_profile_list_tiles.dart';
 
@@ -24,7 +24,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<TheTransactionsCubit>(context).loadImage();
+    BlocProvider.of<ProfileImageCubit>(context).loadImage();
   }
 
   @override
@@ -91,17 +91,17 @@ class _ProfileViewState extends State<ProfileView> {
             spreadRadius: .7,
           ),
         ]),
-        child: BlocBuilder<TheTransactionsCubit, TheTransactionsState>(
+        child: BlocBuilder<ProfileImageCubit, ProfileImageState>(
           builder: (context, state) {
             String image =
-                BlocProvider.of<TheTransactionsCubit>(context).imagePath;
+                BlocProvider.of<ProfileImageCubit>(context).imagePath;
 
             return Stack(
               alignment: Alignment.bottomRight,
               children: [
                 CircleAvatar(
                   minRadius: 60,
-                  backgroundColor:                      Theme.of(context).scaffoldBackgroundColor,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   child: CircleAvatar(
                     backgroundColor: Theme.of(context).primaryColor,
                     backgroundImage: image != ''
@@ -109,14 +109,14 @@ class _ProfileViewState extends State<ProfileView> {
                         : NetworkImage(
                             '${FirebaseAuth.instance.currentUser?.photoURL}'),
                     minRadius: 55,
-                  ),  
+                  ),
                 ),
                 FloatingActionButton(
                   backgroundColor: Theme.of(context).primaryColor,
                   shape: const CircleBorder(),
                   mini: true,
                   onPressed: () {
-                    BlocProvider.of<TheTransactionsCubit>(context)
+                    BlocProvider.of<ProfileImageCubit>(context)
                         .pickImageFromGallery();
                   },
                   child: Icon(

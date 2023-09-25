@@ -8,10 +8,13 @@ import 'package:incomeandexpense/Helpers/colors.dart';
 import 'package:incomeandexpense/view%20model/theme%20cubit/theme_cubit.dart';
 import 'package:incomeandexpense/views/screens/get_started_view.dart';
 
+import 'Helpers/Themes/dark_theme.dart';
+import 'Helpers/Themes/light_theme.dart';
 import 'Helpers/strings.dart';
 import 'firebase_options.dart';
 import 'models/transactions_model.dart';
 import 'view model/google auth cubit/google_auth_cubit.dart';
+import 'view model/profile image cubit/profile_image_cubit.dart';
 import 'view model/transaction cubit/the_transaction_cubit.dart';
 
 void main() async {
@@ -26,6 +29,7 @@ void main() async {
     const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.transparent,
       statusBarColor: Colors.transparent,
+      systemNavigationBarDividerColor: cBlue,
       statusBarIconBrightness: Brightness.light,
     ),
   );
@@ -47,6 +51,9 @@ class MoneyMap extends StatelessWidget {
               BlocProvider(
                 create: (context) => ThemeCubit()..getTheme(),
               ),
+      //        BlocProvider(
+      // create: (context) => ProfileImageCubit(),
+      //         ),
               BlocProvider(
                 create: (context) => GoogleAuthCubit(),
               ),
@@ -68,23 +75,8 @@ class MoneyMap extends StatelessWidget {
                   title: 'Money Map',
                   debugShowCheckedModeBanner: false,
                   themeMode: themeMode,
-                  darkTheme: ThemeData.dark(useMaterial3: true,)
-                      .copyWith(primaryColor: cBlue,
-                      textTheme: Theme.of(context).textTheme.apply(
-                    fontFamily: 'Inter',
-                    bodyColor: cLight
-                    
-                    
-                  )  ),
-                  theme: ThemeData.light(
-                    useMaterial3: true,
-                    
-                  ).copyWith(primaryColor: cDarkBlue,
-                  textTheme: Theme.of(context).textTheme.apply(
-                    fontFamily: 'Inter',
-                    bodyColor: cDark
-                  )
-                  ),
+                  darkTheme: customDarkTheme(context),
+                  theme: customLightTheme(context),
                   home: const GetStartedView(),
                 );
               },

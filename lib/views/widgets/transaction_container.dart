@@ -26,7 +26,7 @@ class TranasactionContainer extends StatelessWidget {
         background: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: cRed, borderRadius: BorderRadius.circular(11)),
+              color: cDismiss, borderRadius: BorderRadius.circular(11)),
           alignment: Alignment.centerLeft,
           child: const Icon(
             Ionicons.trash,

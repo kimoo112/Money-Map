@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:incomeandexpense/Helpers/navigate.dart';
+import 'package:incomeandexpense/view%20model/profile%20image%20cubit/profile_image_cubit.dart';
 import 'package:incomeandexpense/view%20model/transaction%20cubit/the_transaction_cubit.dart';
 import 'package:incomeandexpense/views/screens/base_screen.dart';
 import 'package:incomeandexpense/views/screens/login_view.dart';
@@ -46,7 +47,7 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
     GoogleSignIn().disconnect();
     user.signOut();
     BlocProvider.of<TheTransactionsCubit>(context).removeBox();
-    BlocProvider.of<TheTransactionsCubit>(context).deleteImage();
+    BlocProvider.of<ProfileImageCubit>(context).deleteImage();
 
     emit(GoogleAuthSuccess());
 

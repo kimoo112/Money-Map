@@ -7,6 +7,8 @@ ThemeData customLightTheme(context) => ThemeData.light(
     ).copyWith(
         primaryColor: cDarkBlue,
         scaffoldBackgroundColor: cLight,
+        bottomNavigationBarTheme:
+            const BottomNavigationBarThemeData(backgroundColor: cLight),
         textTheme: Theme.of(context)
             .textTheme
             .apply(fontFamily: 'Inter', bodyColor: cDark));

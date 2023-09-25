@@ -7,7 +7,6 @@ import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:incomeandexpense/Helpers/strings.dart';
 import 'package:incomeandexpense/models/transactions_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'the_transaction_state.dart';
 
@@ -152,28 +151,10 @@ class TheTransactionsCubit extends Cubit<TheTransactionsState> {
 
       if (pickedFile != null) {
         imagePath = pickedFile.path;
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('Image', imagePath);
-        loadImage();
         emit(TheImagePicked(imagePath: imagePath));
       } else {}
     } catch (e) {
       debugPrint(e.toString());
     }
-  }
-
-  loadImage() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString('Image') != null) {
-      imagePath = prefs.getString('Image')!;
-      emit(TheImagePicked(imagePath: imagePath));
-    } else {}
-  }
-
-  deleteImage() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.remove('Image');
-      imagePath = '';
-      emit(TheImagePicked(imagePath: imagePath));
   }
 }

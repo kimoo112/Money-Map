@@ -7,6 +7,8 @@ ThemeData customDarkTheme(context) => ThemeData.dark(
     ).copyWith(
         primaryColor: cBlue,
         scaffoldBackgroundColor: cDark,
+        bottomNavigationBarTheme:
+            const BottomNavigationBarThemeData(backgroundColor: cBottomNav),
         textTheme: Theme.of(context)
             .textTheme
             .apply(fontFamily: 'Inter', bodyColor: cLight));
