@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const Color cLight = Color(0xFFEEEDED);
 const Color cGreen = Color(0xFF13A001);
-const Color cDark = Color(0xFF0D1122);
+const Color cDark = Color.fromARGB(255, 12, 18, 43);
 const Color cBottomNav = Color.fromARGB(255, 7, 16, 49);
 const Color cWhite = Color(0xFFFFFFFF);
 const Color cTransparent = Colors.transparent;

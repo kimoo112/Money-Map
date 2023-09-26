@@ -22,7 +22,7 @@ class TotalBalanceWidget extends StatelessWidget {
               'Total Balance',
               style: TextStyle(
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  fontSize: 16.sp),
+                  fontSize: 16.sp,fontWeight: FontWeight.w700),
             ),
             SizedBox(height: 10.h),
             BlocBuilder<TheTransactionsCubit, TheTransactionsState>(
@@ -31,7 +31,7 @@ class TotalBalanceWidget extends StatelessWidget {
                   "\$ ${BlocProvider.of<TheTransactionsCubit>(context).totalBalance}",
                   style: TextStyle(
                       color: Theme.of(context).scaffoldBackgroundColor,
-                      fontSize: 16.sp),
+                      fontSize: 16.sp,fontWeight: FontWeight.w700),
                 );
               },
             ),

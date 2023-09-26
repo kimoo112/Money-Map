@@ -17,6 +17,10 @@ class Assets {
   /// assets/images/GetStarted.png
   static const String imagesGetStarted = "assets/images/GetStarted.png";
 
+  /// Assets for imagesSpalshLottie
+  /// assets/images/SpalshLottie.json
+  static const String imagesSpalshLottie = "assets/images/SpalshLottie.json";
+
   /// Assets for imagesTransactionEmpty
   /// assets/images/TransactionEmpty.json
   static const String imagesTransactionEmpty = "assets/images/TransactionEmpty.json";

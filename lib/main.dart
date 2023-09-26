@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:incomeandexpense/Helpers/colors.dart';
 import 'package:incomeandexpense/view%20model/theme%20cubit/theme_cubit.dart';
-import 'package:incomeandexpense/views/screens/get_started_view.dart';
 
 import 'Helpers/Themes/dark_theme.dart';
 import 'Helpers/Themes/light_theme.dart';
@@ -14,8 +13,8 @@ import 'Helpers/strings.dart';
 import 'firebase_options.dart';
 import 'models/transactions_model.dart';
 import 'view model/google auth cubit/google_auth_cubit.dart';
-import 'view model/profile image cubit/profile_image_cubit.dart';
 import 'view model/transaction cubit/the_transaction_cubit.dart';
+import 'views/screens/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,9 +50,6 @@ class MoneyMap extends StatelessWidget {
               BlocProvider(
                 create: (context) => ThemeCubit()..getTheme(),
               ),
-      //        BlocProvider(
-      // create: (context) => ProfileImageCubit(),
-      //         ),
               BlocProvider(
                 create: (context) => GoogleAuthCubit(),
               ),
@@ -77,7 +73,7 @@ class MoneyMap extends StatelessWidget {
                   themeMode: themeMode,
                   darkTheme: customDarkTheme(context),
                   theme: customLightTheme(context),
-                  home: const GetStartedView(),
+                  home: const SplashView(),
                 );
               },
             ),

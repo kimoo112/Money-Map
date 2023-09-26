@@ -21,8 +21,8 @@ class ExpensesWidget extends StatelessWidget {
             Text(
               'Expenses'.toUpperCase(),
               style: TextStyle(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                fontSize: 16.sp),
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  fontSize: 16.sp,fontWeight: FontWeight.w600),
             ),
             SizedBox(width: 10.w),
             Icon(
@@ -38,8 +38,8 @@ class ExpensesWidget extends StatelessWidget {
             return Text(
               "\$ ${BlocProvider.of<TheTransactionsCubit>(context).expenses}",
               style: TextStyle(
-                                    color: Theme.of(context).scaffoldBackgroundColor,
-fontSize: 16.sp),
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  fontSize: 16.sp,fontWeight: FontWeight.w600),
             );
           },
         )

@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:incomeandexpense/view%20model/profile%20image%20cubit/profile_image_cubit.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../Helpers/colors.dart';
-import '../../view%20model/google%20auth%20cubit/google_auth_cubit.dart';
+import '../../view model/google auth cubit/google_auth_cubit.dart';
+import '../../view model/profile image cubit/profile_image_cubit.dart';
 import '../widgets/all_profile_list_tiles.dart';
 
 class ProfileView extends StatefulWidget {

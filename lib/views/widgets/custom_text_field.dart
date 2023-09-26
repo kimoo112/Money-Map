@@ -44,24 +44,26 @@ class CustomTextField extends StatelessWidget {
             },
       autovalidateMode: AutovalidateMode.always,
       decoration: InputDecoration(
+        
+        labelStyle: TextStyle(color: Theme.of(context).primaryColor),
         labelText: label,
         filled: true,
         fillColor: cLight.withOpacity(.3),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.grey[400]!),
+          borderSide: BorderSide(color:Theme.of(context).primaryColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.grey[400]!),
+          borderSide: const BorderSide(color: cLightGrey),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.blue),
+          borderSide: BorderSide(color: Theme.of(context).primaryColor),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.red),
+          borderSide: const BorderSide(color: cRed),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
