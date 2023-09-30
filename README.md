@@ -1,4 +1,4 @@
-# Money Map
+# MONEY MAP
 A new Flutter project.
 
 Money Map - Your Financial Navigator 🌍💰
