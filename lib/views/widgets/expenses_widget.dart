@@ -22,7 +22,7 @@ class ExpensesWidget extends StatelessWidget {
               'Expenses'.toUpperCase(),
               style: TextStyle(
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  fontSize: 16.sp,fontWeight: FontWeight.w600),
+                  fontSize: 16.sp,fontWeight: FontWeight.w500),
             ),
             SizedBox(width: 10.w),
             Icon(
@@ -39,7 +39,7 @@ class ExpensesWidget extends StatelessWidget {
               "\$ ${BlocProvider.of<TheTransactionsCubit>(context).expenses}",
               style: TextStyle(
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  fontSize: 16.sp,fontWeight: FontWeight.w600),
+                  fontSize: 16.sp,fontWeight: FontWeight.w500),
             );
           },
         )

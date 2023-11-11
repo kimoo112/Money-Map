@@ -13,6 +13,7 @@ import 'add_transactions.dart';
 import 'chart_view.dart';
 import 'home_view.dart';
 import 'profile_view.dart';
+import 'wallet_view.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key, this.bottomNavIndex = 0}) : super(key: key);
@@ -35,13 +36,13 @@ class _BaseScreenState extends State<BaseScreen> with TickerProviderStateMixin {
   final iconList = <IconData>[
     IconlyBold.home,
     IconlyBold.chart,
-    Ionicons.wallet,
+    Ionicons.notifications,
     IconlyBold.profile,
   ];
   List<Widget> pages = [
     const HomeView(),
     const ChartView(),
-    const HomeView(),
+     NotificationsView(),
      BlocProvider(
       create: (context) => ProfileImageCubit(),
       child:const  ProfileView(),

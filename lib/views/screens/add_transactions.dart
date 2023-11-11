@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../Helpers/colors.dart';
-import '../../Helpers/navigate.dart';
-import 'base_screen.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/custom_text_field.dart';
 import 'package:intl/intl.dart';
 
+import '../../Helpers/colors.dart';
+import '../../Helpers/navigate.dart';
 import '../../view model/transaction cubit/the_transaction_cubit.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
+import 'base_screen.dart';
 
 class AddTransactionsView extends StatefulWidget {
   const AddTransactionsView({Key? key}) : super(key: key);
@@ -31,13 +31,14 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
     String formattedDate = DateFormat.yMd().format(now);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: cBlue,
+      backgroundColor: cPrimaryDark,
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor, borderRadius: BorderRadius.circular(16.r)),
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: BorderRadius.circular(16.r)),
         child: Stack(
           children: [
             Padding(
@@ -91,7 +92,7 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
                 },
                 icon: Icon(
                   IconlyBroken.arrowLeft2,
-                  color: cBlue,
+                  color: cPrimaryDark,
                   size: 18.sp,
                 ),
               ),
@@ -105,7 +106,7 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
   CustomButton _addTransactionButton(
       BuildContext context, String formattedDate) {
     return CustomButton(
-      bcColor: cBlue,
+      bcColor: cPrimaryDark,
       padding: EdgeInsets.zero,
       height: 30.h,
       title: Text(
@@ -184,7 +185,7 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
                 ),
               ]),
           child: CircleAvatar(
-              backgroundColor: cBlue,
+              backgroundColor: cPrimaryDark,
               radius: 50,
               backgroundImage: image != '' ? FileImage(File(image)) : null),
         ),
@@ -198,7 +199,7 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
           },
           child: const Icon(
             Icons.add,
-            color: cBlue,
+            color: cPrimaryDark,
           ),
         ),
       ],
@@ -219,12 +220,11 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
                   offset: const Offset(0, 2),
                   color: cLightGrey.withOpacity(.4),
                   blurRadius: 7,
-                  
                   spreadRadius: 1,
                 ),
               ]),
           child: CircleAvatar(
-              backgroundColor: cBlue,
+              backgroundColor: cPrimaryDark,
               radius: 50,
               backgroundImage: FileImage(File(state.imagePath))),
         ),
@@ -238,7 +238,7 @@ class _AddTransactionsViewState extends State<AddTransactionsView> {
           },
           child: const Icon(
             Icons.add,
-            color: cBlue,
+            color: cPrimaryDark,
           ),
         ),
       ],

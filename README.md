@@ -1,16 +1,7 @@
-# incomeandexpense
-
+# MONEY MAP
 A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Money Map - Your Financial Navigator 🌍💰
+Money Map is a comprehensive financial tracking application tailored for those who seek clarity in their monetary transactions. It's not just another expense manager; it's your daily financial diary that will help you make sense of your spending and saving habits.
+![Logo](https://github.com/kimoo112/Money-Map/assets/130873071/ab52885c-2206-4414-98b7-1441436b9f1e)
+![Green Cover preview with pattern](https://github.com/kimoo112/Money-Map/assets/130873071/aab40e40-9140-4458-9365-2e0ecbd83366)

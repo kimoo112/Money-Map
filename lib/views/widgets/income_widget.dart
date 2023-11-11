@@ -22,7 +22,8 @@ class IncomeWidget extends StatelessWidget {
               'income'.toUpperCase(),
               style: TextStyle(
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  fontSize: 16.sp,fontWeight: FontWeight.w600),
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500),
             ),
             SizedBox(width: 10.w),
             Icon(
@@ -39,7 +40,8 @@ class IncomeWidget extends StatelessWidget {
               "\$ ${BlocProvider.of<TheTransactionsCubit>(context).income}",
               style: TextStyle(
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  fontSize: 16.sp,fontWeight: FontWeight.w600),
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500),
             );
           },
         ),

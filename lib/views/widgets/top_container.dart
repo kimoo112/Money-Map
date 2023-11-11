@@ -29,47 +29,54 @@ class TopContainer extends StatelessWidget {
           Positioned(left: -20, child: Image.asset(Assets.iconsVectors)),
           Positioned(
               top: 0,
-              right: -140,
-              bottom: 0,
-              child: Image.asset(Assets.iconsVectors)),
+              right: 0,
+              child: RotatedBox(quarterTurns: 10,
+              child: Image.asset(Assets.iconsVectors))),
           Padding(
             padding: EdgeInsets.only(top: 40.0.sp, left: 10.sp, right: 10.sp),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
               children: [
-                Column(
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Hello Safe Spender',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: cWhite,
-                        fontSize: 14.sp,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Welcome ,'.toUpperCase(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: cWhite,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                        SizedBox(height: 5.h),
+                        Text(
+                          FirebaseAuth.instance.currentUser?.displayName
+                                  .toString() ??
+                              'No name',
+                          style: TextStyle(
+                              fontSize: 22.sp,
+                              color: Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        _launchUrl('https://my-moneyy.vercel.app/');
+                      },
+                      icon: Icon(
+                        Iconsax.global,
+                        color: Theme.of(context).primaryColor,
+                        size: 18.sp,
                       ),
                     ),
-                    SizedBox(height: 5.h),
-                    Text(
-                      FirebaseAuth.instance.currentUser?.displayName
-                              .toString() ??
-                          'No name',
-                      style: TextStyle(
-                          fontSize: 20.sp,
-                          color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.bold),
-                    )
                   ],
-                ),
-                IconButton(
-                  onPressed: () {
-                    _launchUrl('https://my-moneyy.vercel.app/');
-                  },
-                  icon: Icon(
-                    Iconsax.global,
-                    color: Theme.of(context).primaryColor,
-                    size: 18.sp,
-                  ),
                 ),
               ],
             ),

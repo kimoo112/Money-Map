@@ -114,7 +114,7 @@ class _BalanceChartState extends State<BalanceChart> {
                   barRods: [
                     BarChartRodData(
                       toY: totalBalance,
-                      color: Theme.of(context).primaryColor,
+                      color: cBlue,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(6),
                         topRight: Radius.circular(6),

@@ -5,7 +5,7 @@ import '../colors.dart';
 ThemeData customLightTheme(context) => ThemeData.light(
       useMaterial3: true,
     ).copyWith(
-        primaryColor: cDarkBlue,
+        primaryColor: cPrimaryLight,
         scaffoldBackgroundColor: cLight,
         bottomNavigationBarTheme:
             const BottomNavigationBarThemeData(backgroundColor: cLight),
